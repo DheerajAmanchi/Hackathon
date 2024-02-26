@@ -1,5 +1,6 @@
 package com.displayBookshelves.pageObjects;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.displayBookshelves.utils.excelUtils;
 
 public class bookshelvesPage extends basePage {
 	
@@ -90,6 +93,7 @@ public class bookshelvesPage extends basePage {
 	@FindBy(xpath="//*[@id=\"content\"]/div[2]/div[2]/div/ul/li/span[1]")
 	public WebElement selectedType;
 	
+	String filePath = System.getProperty("user.dir")+"/src/test/resources/bookShelvesData.xlsx";
 	
 	
 	public String getBookshelvesTitle() {
@@ -193,7 +197,7 @@ public class bookshelvesPage extends basePage {
 		
 	}
 	
-	public void displayBookshelves() {
+	public void displayBookshelves() throws IOException {
 		
 		List<String> models= new ArrayList<>();
 		List<String> brands= new ArrayList<>();
@@ -204,13 +208,20 @@ public class bookshelvesPage extends basePage {
 			models.add(modelName.getText());
 			System.out.println(modelName.getText());
 			
+			excelUtils.setCellData(filePath,"BookShelves",i,0,modelName.getText());
+			
 			WebElement brandName = driver.findElement(By.xpath("//*[@id=\"search-results\"]/div[3]/ul/li[" +i+ "]/div/div[5]/a/div[1]/div[2]/div"));
 			brands.add(brandName.getText());
 			System.out.println(brandName.getText());
 			
+			excelUtils.setCellData(filePath,"BookShelves",i,1,brandName.getText());
+			
 			WebElement price = driver.findElement(By.xpath("//*[@id=\"search-results\"]/div[3]/ul/li[" +i+ "]/div/div[5]/a/div[2]/span"));
 			prices.add(price.getText());
 			System.out.println(price.getText());
+			
+			excelUtils.setCellData(filePath,"BookShelves",i,2,price.getText());
+			
 			System.out.println("========================================================================");
 			
 		}

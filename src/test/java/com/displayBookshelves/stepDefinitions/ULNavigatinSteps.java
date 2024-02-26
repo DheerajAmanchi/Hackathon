@@ -1,5 +1,7 @@
 package com.displayBookshelves.stepDefinitions;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 
 import com.displayBookshelves.pageObjects.*;
@@ -177,7 +179,7 @@ public class ULNavigatinSteps {
 	}
 	
 	@Then("user should able to view the top three items details")
-	public void user_should_able_to_view_the_top_three_items_details() {
+	public void user_should_able_to_view_the_top_three_items_details() throws IOException {
 	    
 	    bp.displayBookshelves();
 	}
@@ -225,7 +227,7 @@ public class ULNavigatinSteps {
 	}
 	
 	@Then("user should able to view all items under {string}")
-	public void user_should_able_to_view_all_items_under(String subMenuItemName) {
+	public void user_should_able_to_view_all_items_under(String subMenuItemName) throws IOException {
 		hp.displayAllItems(subMenuItemName);
 		System.out.println("==========================================");
 	}

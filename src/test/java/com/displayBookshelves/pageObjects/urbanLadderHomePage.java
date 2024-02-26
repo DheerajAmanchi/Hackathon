@@ -1,5 +1,6 @@
 package com.displayBookshelves.pageObjects;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -7,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import com.displayBookshelves.utils.excelUtils;
 
 public class urbanLadderHomePage extends basePage {
 	static JavascriptExecutor js;
@@ -69,6 +72,8 @@ public class urbanLadderHomePage extends basePage {
 	
 	@FindBy(xpath="//header[@id=\"header\"]/section/div/ul[2]/li[3]/a")
 	WebElement giftCardsButton;
+	
+	String filePath = System.getProperty("user.dir")+"/src/test/resources/bookShelvesData.xlsx";
 	
 	public void clickGoogleClose() {
 		js = (JavascriptExecutor) driver;
@@ -139,19 +144,24 @@ public class urbanLadderHomePage extends basePage {
 		}
 	}
 	
-	public void displayAllItems(String subMenuItemName) {
+	public void displayAllItems(String subMenuItemName) throws IOException {
 		
 		if(subMenuItemName.equalsIgnoreCase("Seating & Chairs")) {
-			
+			int r=1;
 			for(WebElement i : SC) {
 				System.out.println(i.getText());
+				excelUtils.setCellData(filePath, "submenuItems",r, 0, i.getText());
+				r++;
+				
 			}
 		}
 		
 		else if(subMenuItemName.equalsIgnoreCase("Living Storage")) {
-			
+			int r=1;
 			for(WebElement i : LS) {
 				System.out.println(i.getText());
+				excelUtils.setCellData(filePath, "submenuItems",r, 1, i.getText());
+				r++;
 			}
 		}
 	}

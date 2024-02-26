@@ -44,12 +44,12 @@ public class hooks {
 	
 	@AfterStep
 	public void addScreenshot(Scenario scenario) {
-		//this is for cucumber junit report
+		
 		System.out.println(scenario.getName());
 		File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
             // Specify the path where you want to save the screenshot
-            FileUtils.copyFile(screenshotFile, new File(System.getProperty("user.dir")+"/src/test/resources/ScreenShots/"+scenario.getName()+".jpg"));
+            FileUtils.copyFile(screenshotFile, new File(System.getProperty("user.dir")+"/src/test/resources/ScreenShots/"+scenario.getName()+".png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
