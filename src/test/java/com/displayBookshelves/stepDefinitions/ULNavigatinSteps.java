@@ -214,7 +214,7 @@ public class ULNavigatinSteps {
 	}
 	
 	@Then("user should able to view the top three study chair details")
-	public void user_should_able_to_view_the_top_three_study_chair_details() {
+	public void user_should_able_to_view_the_top_three_study_chair_details() throws IOException {
 		
 		scp = new studyChairsPage(baseClass.getDriver());
 		scp.displayStudyChairs();
