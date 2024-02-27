@@ -10,7 +10,7 @@ import io.cucumber.testng.CucumberOptions;
 
 //@RunWith(Cucumber.class)
 @CucumberOptions(
-		features= {".//featureFiles/"}, 
+		features= {"src/test/resources/featureFiles/"}, 
 		glue = "com.displayBookshelves.stepDefinitions", 
 		plugin = {"pretty","html:reports/report.html","rerun:target/rerun.txt",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
