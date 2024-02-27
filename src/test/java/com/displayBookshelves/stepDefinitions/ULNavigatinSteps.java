@@ -184,12 +184,7 @@ public class ULNavigatinSteps {
 	    bp.displayBookshelves();
 	}
 	
-//	@Given("user should navigate to urbanLadder webpage")
-//	public void user_should_navigate_to_urbanLadder_webpage() {
-//		
-//		hp = new urbanLadderHomePage(baseClass.getDriver());
-//	}
-	
+
 	@When("user clicks on the Study menu item")
 	public void user_clicks_on_the_Study_menu_item() {
 		
@@ -217,6 +212,7 @@ public class ULNavigatinSteps {
 	public void user_should_able_to_view_the_top_three_study_chair_details() throws IOException {
 		
 		scp = new studyChairsPage(baseClass.getDriver());
+		
 		scp.displayStudyChairs();
 	}
 	
@@ -231,12 +227,6 @@ public class ULNavigatinSteps {
 		hp.displayAllItems(subMenuItemName);
 		System.out.println("==========================================");
 	}
-	
-//	@Given("user should be navigate to UrbanLadder website")
-//	public void user_should_be_navigate_to_UrbanLadder_website() {
-//		
-//		hp = new urbanLadderHomePage(baseClass.getDriver());
-//	}
 	
 	@When("user clicks on Gift Cards")
 	public void user_clicks_on_Gift_Cards() {

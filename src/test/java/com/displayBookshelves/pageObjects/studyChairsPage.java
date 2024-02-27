@@ -1,19 +1,24 @@
 package com.displayBookshelves.pageObjects;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.displayBookshelves.utils.excelUtils;
 
 public class studyChairsPage extends basePage {
 	
-	
+	static JavascriptExecutor js;
+	static WebDriverWait wait;
 
 	public studyChairsPage(WebDriver driver) {
 		super(driver);
@@ -22,6 +27,9 @@ public class studyChairsPage extends basePage {
 	
 	@FindBy(tagName="h1")
 	public WebElement studyChairsTitle;
+	
+	@FindBy(xpath="//*[@id=\"authentication_popup\"]/div/div/div[2]/a[1]")
+	WebElement closeButton;
 	
 	String filePath = System.getProperty("user.dir")+"/src/test/resources/bookShelvesData.xlsx";
 	
@@ -34,9 +42,22 @@ public class studyChairsPage extends basePage {
 	
 	public void displayStudyChairs() throws IOException {
 		
+		try {
+			wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			wait.until(ExpectedConditions.visibilityOf(closeButton));
+			
+			js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", closeButton);
+		}
+		catch(Exception e) {
+			
+		}
+		
 		List<String> models= new ArrayList<>();
 		List<String> brands= new ArrayList<>();
 		List<String> prices = new ArrayList<>();
+		
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"content\"]/div[3]/div/ul/li[1]/div/div[5]/a/div[1]/span"))));
 		
 		for(int i=1; i<=3; i++) {
 			System.out.println("========================================================================");
